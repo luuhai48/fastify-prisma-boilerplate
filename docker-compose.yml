@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: bitnami/postgresql:15.1.0
+    container_name: posgres-local
+    restart: always
+    ports:
+      - '${DB_PORT:-5432}:5432'
+    environment:
+      - POSTGRESQL_USERNAME=${DB_USER:-my_user}
+      - POSTGRESQL_PASSWORD=${DB_PASS:-password123}
+      - POSTGRESQL_DATABASE=${DB_DB:-mydb}
+    volumes:
+      - postgreslocal:/bitnami/postgresql
+
+volumes:
+  postgreslocal:
